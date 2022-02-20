@@ -18,13 +18,13 @@ public class UserController {
 
     @PostMapping("/user")
     public Users create(@RequestBody Users users) {
-        log.debug("create() 호출됨");
+        log.debug("create() 호출됨 = {}", users.getUserid());
         return userRepository.save(users);
     }
 
     @GetMapping("/user/{id}")
     public String read(@PathVariable Long id) {
-        log.debug("read() 호출됨");
+        log.debug("read() 호출됨 = {}", id);
         Optional<Users> userOptional = userRepository.findById(id);
         userOptional.ifPresent(System.out::println);
 
