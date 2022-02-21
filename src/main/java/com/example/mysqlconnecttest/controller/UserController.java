@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -45,9 +46,9 @@ public class UserController {
     @GetMapping("/user/{id}")
     public String read(@PathVariable Long id) {
         log.debug("read() 호출됨 = {}", id);
-        Users users = userRepository.findById(id);
-        if(users != null) {
-            System.out.println(users.getName());
+        List<Users> users = userRepository.findById(id);
+        for(Users user : users) {
+            System.out.println(user.getName());
         }
         return "successfully executed";
     }
